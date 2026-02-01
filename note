@@ -45,3 +45,14 @@ services:
       - my-network
 networks:
   my-network:
+---------------------------------------------------------------------------------------------------------
+Install task:
+
+zahir@zahir-ubuntu22:/etc/docker$ curl -1sLf 'https://dl.cloudsmith.io/public/task/task/setup.deb.sh' | sudo -E bash
+
+zahir@zahir-ubuntu22:/etc/docker$ sudo apt install task
+-------------- Run task:
+$ task
+$ task start_infra
+$ task stop_infra
+
