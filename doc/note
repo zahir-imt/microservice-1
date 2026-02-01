@@ -1,0 +1,61 @@
+To format code run:
+    $ mvn spotless:apply
+
+Run docker compose:
+    $ docker compose -f infra.yaml up -d
+
+Inspect docker container:
+    $ docker inspect 266e382303d3
+View space used by docker images and containers:
+   $ docker system df -v
+
+
+
+$ docker system prune
+    WARNING! This will remove:
+      - all stopped containers
+      - all networks not used by at least one container
+      - all dangling images
+      - unused build cache
+
+    Are you sure you want to continue? [y/N] y
+    Deleted Containers:
+    00ff3c94e2b040ec73d00dd571fd5a4c99ab4d71d3ccca25828622292607c033
+
+    Deleted Networks:
+    spring-boot-microservices-course_default
+
+    Deleted build cache objects:
+    3gnk1afnzquj4xqo7xwr7ufb5
+
+
+-----------------------------------------------------------------------------------------
+ Shared Docker Networks (Best Practice)
+If using docker-compose, place both pgAdmin and Postgres on the same custom network. You can then use the service name (e.g., db) as the hostname in pgAdmin.
+yaml
+
+services:
+  db:
+    image: postgres
+    networks:
+      - my-network
+  pgadmin:
+    image: dpage/pgadmin4
+    networks:
+      - my-network
+networks:
+  my-network:
+---------------------------------------------------------------------------------------------------------
+Install task:
+
+zahir@zahir-ubuntu22:/etc/docker$ curl -1sLf 'https://dl.cloudsmith.io/public/task/task/setup.deb.sh' | sudo -E bash
+
+zahir@zahir-ubuntu22:/etc/docker$ sudo apt install task
+-------------- Run task:
+$ task
+$ task start_infra
+$ task stop_infra
+
+------------------------------------------------------------------------------------------------------------
+--swagger url: http://localhost:8081/swagger-ui/index.html
+
