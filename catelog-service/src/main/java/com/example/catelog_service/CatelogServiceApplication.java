@@ -8,5 +8,7 @@ public class CatelogServiceApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(CatelogServiceApplication.class, args);
+
+
     }
 }
