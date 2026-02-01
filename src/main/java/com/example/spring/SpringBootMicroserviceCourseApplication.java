@@ -8,5 +8,6 @@ public class SpringBootMicroserviceCourseApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(SpringBootMicroserviceCourseApplication.class, args);
+
     }
 }
