@@ -1,0 +1,25 @@
+To format code run:
+    $ mvn spotless:apply
+
+Run docker compose:
+    $ docker compose -f infra.yaml up -d
+
+Inspect docker container:
+    $ docker inspect 266e382303d3
+
+-----------------------------------------------------------------------------------------
+ Shared Docker Networks (Best Practice)
+If using docker-compose, place both pgAdmin and Postgres on the same custom network. You can then use the service name (e.g., db) as the hostname in pgAdmin.
+yaml
+
+services:
+  db:
+    image: postgres
+    networks:
+      - my-network
+  pgadmin:
+    image: dpage/pgadmin4
+    networks:
+      - my-network
+networks:
+  my-network:
