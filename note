@@ -6,6 +6,10 @@ Run docker compose:
 
 Inspect docker container:
     $ docker inspect 266e382303d3
+View space used by docker images and containers:
+   $ docker system df -v
+
+
 
 $ docker system prune
     WARNING! This will remove:
