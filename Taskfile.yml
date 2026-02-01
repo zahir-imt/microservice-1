@@ -46,7 +46,7 @@ tasks:
       - task: sleep
       - task: start_infra
 
-#  start_monitoring:
+#   start_monitoring:
 #    cmds:
 #      - "docker compose -f {{.MONITORING_DC_FILE}} up -d"
 
