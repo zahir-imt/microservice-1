@@ -1,0 +1,58 @@
+List all databases:
+-------------------
+postgres-# \l
+                                                    List of databases
+   Name    |  Owner   | Encoding | Locale Provider |  Collate   |   Ctype    | Locale | ICU Rules |   Access privileges
+-----------+----------+----------+-----------------+------------+------------+--------+-----------+-----------------------
+ postgres  | postgres | UTF8     | libc            | en_US.utf8 | en_US.utf8 |        |           |
+ template0 | postgres | UTF8     | libc            | en_US.utf8 | en_US.utf8 |        |           | =c/postgres          +
+           |          |          |                 |            |            |        |           | postgres=CTc/postgres
+ template1 | postgres | UTF8     | libc            | en_US.utf8 | en_US.utf8 |        |           | =c/postgres          +
+           |          |          |                 |            |            |        |           | postgres=CTc/postgres
+(3 rows)
+*******************************************************************************************************************************************
+postgres-# \l+
+                                                                                      List of databases
+   Name    |  Owner   | Encoding | Locale Provider |  Collate   |   Ctype    | Locale | ICU Rules |   Access privileges   |  Size   | Tablespace |                Description
+-----------+----------+----------+-----------------+------------+------------+--------+-----------+-----------------------+---------+------------+--------------------------------------------
+ postgres  | postgres | UTF8     | libc            | en_US.utf8 | en_US.utf8 |        |           |                       | 7678 kB | pg_default | default administrative connection database
+ template0 | postgres | UTF8     | libc            | en_US.utf8 | en_US.utf8 |        |           | =c/postgres          +| 7521 kB | pg_default | unmodifiable empty database
+           |          |          |                 |            |            |        |           | postgres=CTc/postgres |         |            |
+ template1 | postgres | UTF8     | libc            | en_US.utf8 | en_US.utf8 |        |           | =c/postgres          +| 7750 kB | pg_default | default template for new databases
+           |          |          |                 |            |            |        |           | postgres=CTc/postgres |         |            |
+(3 rows)
+
+*******************************************************************************************************************************************
+
+postgres=# SELECT datname FROM pg_database;
+  datname
+-----------
+ postgres
+ template1
+ template0
+(3 rows)
+
+*******************************************************************************************************************************************
+
+postgres=# \dt
+Did not find any tables.
+
+*******************************************************************************************************************************************
+postgres=# \dt
+                  List of tables
+ Schema |         Name          | Type  |  Owner
+--------+-----------------------+-------+----------
+ public | flyway_schema_history | table | postgres
+ public | products              | table | postgres
+(2 rows)
+
+*******************************************************************************************************************************************
+
+postgres=# SELECT * FROM flyway_schema_history;
+ installed_rank | version |      description      | type |            script             |  checksum   | installed_by |        installed_on        | execution_time | success
+----------------+---------+-----------------------+------+-------------------------------+-------------+--------------+----------------------------+----------------+---------
+              1 | 1       | create products table | SQL  | V1__create_products_table.sql | -1690110950 | postgres     | 2026-02-01 18:37:17.375101 |             36 | t
+              2 | 2       | add books data        | SQL  | V2__add_books_data.sql        |   388627860 | postgres     | 2026-02-01 18:37:17.508573 |             11 | t
+(2 rows)
+
+*******************************************************************************************************************************************

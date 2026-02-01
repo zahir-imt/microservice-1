@@ -1,0 +1,12 @@
+1. Open the PostgreSQL Prompt (psql):
+    $ docker exec -it catalog-db psql -U postgres -d postgres
+    psql (18.1)
+    Type "help" for help.
+
+    postgres=# bash
+
+2. Access the Container's Shell (Bash/Sh)
+    docker exec -it catalog-db bash
+
+3. View Application Logs
+    docker logs -f catalog-db
