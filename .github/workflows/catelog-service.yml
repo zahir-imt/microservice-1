@@ -1,5 +1,5 @@
 name: Catalog Service
-run-name: ${{ github.actor }} is triggering GitHub Actions for Catalog Service 🚀
+run-name: ${{ github.actor }} has triggered GitHub Actions for Catalog Service 🚀
 on:
   push:
     paths:
