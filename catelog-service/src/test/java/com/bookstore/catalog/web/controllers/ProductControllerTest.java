@@ -1,19 +1,19 @@
 package com.bookstore.catalog.web.controllers;
 
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
+
 import com.bookstore.catalog.AbstractIT;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.context.jdbc.Sql;
 
-import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
-
 @Sql("/test-data.sql")
 class ProductControllerTest extends AbstractIT {
 
     @Test
-    void shouldReturProducts(){
+    void shouldReturProducts() {
         given().contentType(ContentType.JSON)
                 .when()
                 .get("/api/products")
@@ -27,7 +27,5 @@ class ProductControllerTest extends AbstractIT {
                 .body("isLast", is(false))
                 .body("hasNext", is(true))
                 .body("hasPrevious", is(false));
-
     }
-
 }

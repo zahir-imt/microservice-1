@@ -1,0 +1,11 @@
+Common Pattern Placeholders:
+--------------------------------------
+Placeholder 	    Description
+-----------         ------------
+%d{...}	            The date/timestamp. Example: %d{yyyy-MM-dd HH:mm:ss.SSS}.
+%-5level	        Log level (INFO, WARN, etc.), padded to 5 characters for alignment.
+%logger{36}	        The logger name (usually the class), abbreviated to 36 characters.
+%msg	            The actual log message.
+%n	                A platform-dependent line separator.
+%t or %thread	    The name of the thread that generated the log.
+%clr(...){color}	Adds ANSI color to the output (e.g., %clr(%5p){blue}).
