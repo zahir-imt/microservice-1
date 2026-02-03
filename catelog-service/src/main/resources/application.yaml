@@ -24,3 +24,10 @@ management:
 
 catalog:
   page-size: 10
+
+logging:
+  level:
+    root: INFO
+    org.springframework.test.context.jdbc: DEBUG
+    org.springframework.jdbc.datasource.init: DEBUG
+
