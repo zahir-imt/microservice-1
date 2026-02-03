@@ -2,11 +2,13 @@ package com.bookstore.catalog;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 
 @SpringBootApplication
-public class CatelogServiceApplication {
+@ConfigurationPropertiesScan
+public class CatalogServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(CatelogServiceApplication.class, args);
+        SpringApplication.run(CatalogServiceApplication.class, args);
     }
 }

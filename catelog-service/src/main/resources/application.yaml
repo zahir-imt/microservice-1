@@ -21,3 +21,6 @@ management:
   info:
     git:
       mode: full
+
+catalog:
+  page-size: 10
