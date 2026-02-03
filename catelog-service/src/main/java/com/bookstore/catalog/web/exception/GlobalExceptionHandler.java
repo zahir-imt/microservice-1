@@ -1,12 +1,10 @@
 package com.bookstore.catalog.web.exception;
 
+import com.bookstore.catalog.domain.ProductNotFoundException;
 import java.net.URI;
 import java.time.Instant;
-
-import com.bookstore.catalog.domain.ProductNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
