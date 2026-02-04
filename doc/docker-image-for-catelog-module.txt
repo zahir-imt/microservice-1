@@ -1,0 +1,11 @@
+Run following:
+    zahir@zahir-ubuntu22:~/workspace/microservice/sivalab/microservice-1$ ./mvnw -pl catelog-service spring-boot:build-image -DskipTests
+
+    [INFO] Successfully built image 'docker.io/library/zahir-bookstore-catelog-service:latest'
+    [INFO]
+    [INFO] ------------------------------------------------------------------------
+    [INFO] BUILD SUCCESS
+    [INFO] ------------------------------------------------------------------------
+    [INFO] Total time:  01:43 min
+    [INFO] Finished at: 2026-02-03T16:42:12-05:00
+    [INFO] -----------------------------------------------------------------------
