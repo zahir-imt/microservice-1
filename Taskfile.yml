@@ -7,7 +7,7 @@ vars:
   INFRA_DC_FILE: "{{.DC_DIR}}/infra.yaml"
   APPS_DC_FILE: "{{.DC_DIR}}/apps.yml"
 #  MONITORING_DC_FILE: "{{.DC_DIR}}/monitoring.yml"
-#  SLEEP_CMD: '{{if eq .GOOS "windows"}}timeout{{else}}sleep{{end}}'
+  SLEEP_CMD: '{{if eq .GOOS "windows"}}timeout{{else}}sleep{{end}}'
 
 tasks:
   default:
