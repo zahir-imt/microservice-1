@@ -11,21 +11,19 @@ import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 @ConfigurationPropertiesScan
 public class OrderServiceApplication implements CommandLineRunner {
 
-	@Autowired
-	private RabbitTemplate rabbitTemplate;
-	@Autowired
-	private  ApplicationProperties properties;
-	public static void main(String[] args) {
-		SpringApplication.run(OrderServiceApplication.class, args);
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
+    @Autowired
+    private ApplicationProperties properties;
 
+    public static void main(String[] args) {
+        SpringApplication.run(OrderServiceApplication.class, args);
+    }
 
-	}
-
-
-	@Override
-	public void run(String... args) throws Exception {
-		rabbitTemplate.convertAndSend(properties.orderEventsExchange(),properties.newOrdersQueue(),"Test test test");
-		System.out.println("medssage sent done");
-	}
+    @Override
+    public void run(String... args) throws Exception {
+        rabbitTemplate.convertAndSend(properties.orderEventsExchange(), properties.newOrdersQueue(), "Test test test");
+        System.out.println("medssage sent done");
+    }
 }
