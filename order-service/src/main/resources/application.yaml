@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: order-service
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:25432/postgres}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
+  jpa:
+    open-in-view: false
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USERNAME:guest}
+    password: ${RABBITMQ_PASSWORD:guest}
+
+
+server:
+  port: 8082
+  shutdown: graceful
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  info:
+    git:
+      mode: full
+
+logging:
+  level:
+    root: INFO
+    org.springframework.test.context.jdbc: DEBUG
+    org.springframework.jdbc.datasource.init: DEBUG
+  pattern:
+    console: "%d{HH:mm:ss} [%-5level] %logger{36} - %msg%n"
+
+######## Order Service Configuration  #########
+orders:
+  order-events-exchange: orders-exchange
+  new-orders-queue: new-orders
+  delivered-orders-queue: delivered-orders
+  cancelled-orders-queue: cancelled-orders
+  error-orders-queue: error-orders

@@ -1,9 +1,9 @@
-name: Catalog Service
-run-name: ${{ github.actor }} has triggered  GitHub Actions for Catalog Service 🚀
+name: Order Service
+run-name: ${{ github.actor }} has triggered  GitHub Actions for Order Service 🚀
 on:
   push:
     paths:
-      - catelog-service/**
+      - order-service/**
     branches:
       - '**'
 #  pull_request:
@@ -14,7 +14,7 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     env:
-      working-directory: ./catelog-service
+      working-directory: ./order-service
     #      DOCKER_IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/bookstore-catalog-service
     defaults:
       run:
@@ -46,5 +46,5 @@ jobs:
         name: Build and Publish Docker Image
         run: |
           ./mvnw spring-boot:build-image -DskipTests
-          echo "Pushing the image to Docker Hub..."
-          docker push zahir2024/bookstore-catelog-service:v1
+          echo "Pushing order image to Docker Hub..."
+          docker push zahir2024/bookstore-order-service:v1

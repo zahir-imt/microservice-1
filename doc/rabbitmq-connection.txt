@@ -1,0 +1,4 @@
+Log:
+
+20:26:17 [INFO ] o.s.a.r.c.CachingConnectionFactory - Attempting to connect to: [localhost:5672]
+20:26:17 [INFO ] o.s.a.r.c.CachingConnectionFactory - Created new connection: rabbitConnectionFactory#3f18fbb4:0/SimpleConnection@583cad8f [delegate=amqp://guest@127.0.0.1:5672/, localPort=53600]

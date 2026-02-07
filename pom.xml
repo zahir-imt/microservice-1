@@ -72,6 +72,7 @@
 
 	<modules>
        <module>catelog-service</module>
+		<module>order-service</module>
 	</modules>
 
 
