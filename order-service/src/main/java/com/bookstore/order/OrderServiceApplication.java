@@ -23,7 +23,8 @@ public class OrderServiceApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        rabbitTemplate.convertAndSend(properties.orderEventsExchange(), properties.newOrdersQueue(), "Test test test");
-        System.out.println("medssage sent done");
+        //  rabbitTemplate.convertAndSend(properties.orderEventsExchange(), properties.newOrdersQueue(), "Test test
+        // test");
+        // System.out.println("medssage sent done");
     }
 }
