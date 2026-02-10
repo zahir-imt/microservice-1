@@ -1,0 +1,77 @@
+To test a Spring Boot REST API using REST Assured, you generally set up an integration test that starts the full application context on a random port.
+1. Add Dependencies
+===================
+Add the REST Assured library to your pom.xml (Maven) or build.gradle (Gradle). Since Spring Boot manages the version, you often don't need to specify one.
+Maven:
+xml
+
+<dependency>
+    <groupId>io.rest-assured</groupId>
+    <artifactId>rest-assured</artifactId>
+    <scope>test</scope>
+</dependency>
+
+2. Configure the Test Class
+===========================
+Use @SpringBootTest with a random port to avoid port conflicts. In a @BeforeEach method, assign the local server port to REST Assured.
+java
+
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+class ApiIntegrationTest {
+
+    @LocalServerPort
+    private Integer port;
+
+    @BeforeEach
+    void setUp() {
+        RestAssured.port = port; // Configure REST Assured to use the dynamic port
+    }
+}
+
+3. Write BDD-Style Tests
+========================
+REST Assured uses a fluent given-when-then syntax for requests and assertions.
+
+    GET Request: Validate status codes and JSON body fields using Hamcrest matchers like equalTo().
+    java
+
+    @Test
+    void shouldGetProduct() {
+        given()
+        .when()
+            .get("/api/products/1")
+        .then()
+            .statusCode(200)
+            .body("name", equalTo("Laptop"))
+            .body("price", notNullValue());
+    }
+
+POST Request: Send a JSON body using Java Text Blocks or a POJO.
+==============================================================
+java
+
+@Test
+void shouldCreateProduct() {
+    String requestBody = """
+        { "name": "Tablet", "price": 499.99 }
+    """;
+
+    given()
+        .contentType(ContentType.JSON)
+        .body(requestBody)
+    .when()
+        .post("/api/products")
+    .then()
+        .statusCode(201)
+        .body("id", notNullValue());
+}
+
+4. Advanced Configuration
+===========================
+
+    Logging: Use .log().all() in either the given() or then() block to print request and response details to the console for easier debugging.
+
+    Authentication: Handle security by passing tokens in headers or using .auth().oauth2("token") for protected endpoints.
+
+    Integration with Testcontainers: If your API relies on a database, you can combine REST Assured with Testcontainers to run tests against
+    a real database instance (e.g., PostgreSQL or Oracle)

@@ -1,0 +1,32 @@
+package com.bookstore.order.domain;
+
+import com.bookstore.order.domain.models.CreateOrderRequest;
+import com.bookstore.order.domain.models.CreateOrderResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+@Service
+@Transactional
+public class OrderService {
+    private static final Logger log = LoggerFactory.getLogger(OrderService.class);
+
+    private final OrderRepository orderRepository;
+
+    OrderService(OrderRepository orderRepository) {
+        this.orderRepository = orderRepository;
+
+    }
+
+    public CreateOrderResponse createOrder(String userName, CreateOrderRequest request) {
+
+        OrderEntity newOrder = OrderMapper.convertToEntity(request);
+        newOrder.setUserName(userName);
+        OrderEntity savedOrder = this.orderRepository.save(newOrder);
+        log.info("Created Order with orderNumber={}", savedOrder.getOrderNumber());
+        //OrderCreatedEvent orderCreatedEvent = OrderEventMapper.buildOrderCreatedEvent(savedOrder);
+        //orderEventService.save(orderCreatedEvent);
+        return new CreateOrderResponse(savedOrder.getOrderNumber());
+    }
+}
