@@ -16,7 +16,6 @@ public class OrderService {
 
     OrderService(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
-
     }
 
     public CreateOrderResponse createOrder(String userName, CreateOrderRequest request) {
@@ -25,8 +24,8 @@ public class OrderService {
         newOrder.setUserName(userName);
         OrderEntity savedOrder = this.orderRepository.save(newOrder);
         log.info("Created Order with orderNumber={}", savedOrder.getOrderNumber());
-        //OrderCreatedEvent orderCreatedEvent = OrderEventMapper.buildOrderCreatedEvent(savedOrder);
-        //orderEventService.save(orderCreatedEvent);
+        // OrderCreatedEvent orderCreatedEvent = OrderEventMapper.buildOrderCreatedEvent(savedOrder);
+        // orderEventService.save(orderCreatedEvent);
         return new CreateOrderResponse(savedOrder.getOrderNumber());
     }
 }

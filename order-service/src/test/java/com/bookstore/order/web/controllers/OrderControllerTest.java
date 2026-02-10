@@ -1,22 +1,15 @@
 package com.bookstore.order.web.controllers;
 
-import com.bookstore.order.AbstractIT;
-import  com.bookstore.order.testdata.TestDataFactory;
-
 import static io.restassured.RestAssured.given;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
-import io.restassured.common.mapper.TypeRef;
+import static org.junit.jupiter.api.Assertions.*;
+
+import com.bookstore.order.AbstractIT;
+import com.bookstore.order.testdata.TestDataFactory;
 import io.restassured.http.ContentType;
-import java.math.BigDecimal;
-import java.util.List;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
-import org.springframework.test.context.jdbc.Sql;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class OrderControllerTest extends AbstractIT {
 
@@ -65,7 +58,7 @@ class OrderControllerTest extends AbstractIT {
         void shouldReturnBadRequestWhenMandatoryDataIsMissing() {
             var payload = TestDataFactory.createOrderRequestWithInvalidCustomer();
             given().contentType(ContentType.JSON)
-                  //  .header("Authorization", "Bearer " + getToken())
+                    //  .header("Authorization", "Bearer " + getToken())
                     .body(payload)
                     .when()
                     .post("/api/orders")
@@ -73,6 +66,4 @@ class OrderControllerTest extends AbstractIT {
                     .statusCode(HttpStatus.BAD_REQUEST.value());
         }
     }
-
 }
-

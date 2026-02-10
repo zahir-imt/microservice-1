@@ -1,36 +1,33 @@
 package com.bookstore.order.web.controllers;
 
+import static com.bookstore.order.testdata.TestDataFactory.*;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Named.named;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.BDDMockito.given;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import com.bookstore.order.ApplicationProperties;
 import com.bookstore.order.domain.OrderService;
 import com.bookstore.order.domain.SecurityService;
 import com.bookstore.order.domain.models.CreateOrderRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.security.test.context.support.WithMockUser;
-
-import static com.bookstore.order.testdata.TestDataFactory.*;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import org.springframework.http.MediaType;
-import static org.junit.jupiter.params.provider.Arguments.arguments;
-import org.junit.jupiter.params.provider.Arguments;
-import static org.junit.jupiter.api.Named.named;
-
-import java.util.stream.Stream;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @WebMvcTest(OrderController.class)
 class OrderControllerUnitTest {
@@ -54,7 +51,7 @@ class OrderControllerUnitTest {
     private ApplicationProperties properties;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         given(securityService.getLoginUserName()).willReturn("user");
     }
 
@@ -78,5 +75,4 @@ class OrderControllerUnitTest {
                 arguments(named("Order with Invalid Delivery Address", createOrderRequestWithInvalidDeliveryAddress())),
                 arguments(named("Order with No Items", createOrderRequestWithNoItems())));
     }
-
 }

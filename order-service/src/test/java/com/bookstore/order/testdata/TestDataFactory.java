@@ -1,16 +1,15 @@
 package com.bookstore.order.testdata;
 
-import com.bookstore.order.domain.models.CreateOrderRequest;
-import com.bookstore.order.domain.models.OrderItem;
-import com.bookstore.order.domain.models.Customer;
-import com.bookstore.order.domain.models.Address;
+import static org.instancio.Select.field;
 
+import com.bookstore.order.domain.models.Address;
+import com.bookstore.order.domain.models.CreateOrderRequest;
+import com.bookstore.order.domain.models.Customer;
+import com.bookstore.order.domain.models.OrderItem;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Set;
 import org.instancio.Instancio;
-
-import static org.instancio.Select.field;
 
 public class TestDataFactory {
     static final List<String> VALID_COUNTIES = List.of("India", "Germany");
@@ -35,8 +34,6 @@ public class TestDataFactory {
                 .set(field(CreateOrderRequest::items), VALID_ORDER_ITEMS)
                 .create();
     }
-
-
 
     public static CreateOrderRequest createOrderRequestWithInvalidDeliveryAddress() {
         return Instancio.of(CreateOrderRequest.class)
