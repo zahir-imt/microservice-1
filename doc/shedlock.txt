@@ -1,0 +1,25 @@
+Ref:
+    https://github.com/lukas-krecan/ShedLock
+
+ShedLock is a lightweight Java library that ensures scheduled tasks run only once across multiple instances of a Spring Boot application in a distributed environment.
+It solves the problem of duplicate task execution (e.g., sending duplicate emails or running conflicting cleanup jobs) that occurs when using
+Spring's standard @Scheduled annotation with multiple running instances.
+
+How ShedLock Works
+==================
+ShedLock uses a shared external storage mechanism (like a database, Redis, or MongoDB) to manage locks.
+
+    Lock Acquisition: Before a scheduled task runs, all instances try to acquire a lock in the shared storage.
+    Execution: Only the instance that successfully acquires the lock is allowed to execute the task.
+    Skipping: Other instances see the lock is held and skip their execution attempt.
+    Lock Release: Once the task is complete, or after a specified timeout (lockAtMostFor), the lock is released, making it available for the next scheduled execution by any
+                instance
+
+Implementation Steps (using a database)
+Implementing ShedLock involves these steps:
+
+    Add Dependencies: Add shedlock-spring, shedlock-provider-jdbc-template, and JDBC support to your project (see Maven Repository for latest versions).
+    Create a Lock Table: Create a table in your shared database for lock management.
+    Configure ShedLock: Enable scheduling and ShedLock (@EnableScheduling, @EnableSchedulerLock) and define a JdbcTemplateLockProvider bean.
+    Annotate Tasks: Use @SchedulerLock(name = "UniqueName", lockAtMostFor = "...", lockAtLeastFor = "...") alongside @Scheduled
+

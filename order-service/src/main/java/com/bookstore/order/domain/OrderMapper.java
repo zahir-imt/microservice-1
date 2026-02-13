@@ -1,11 +1,13 @@
 package com.bookstore.order.domain;
 
 import com.bookstore.order.domain.models.CreateOrderRequest;
+import com.bookstore.order.domain.models.OrderDTO;
 import com.bookstore.order.domain.models.OrderItem;
 import com.bookstore.order.domain.models.OrderStatus;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class OrderMapper {
 
@@ -27,5 +29,21 @@ public class OrderMapper {
         }
         newOrder.setItems(orderItems);
         return newOrder;
+    }
+
+    static OrderDTO convertToDTO(OrderEntity order) {
+        Set<OrderItem> orderItems = order.getItems().stream()
+                .map(item -> new OrderItem(item.getCode(), item.getName(), item.getPrice(), item.getQuantity()))
+                .collect(Collectors.toSet());
+
+        return new OrderDTO(
+                order.getOrderNumber(),
+                order.getUserName(),
+                orderItems,
+                order.getCustomer(),
+                order.getDeliveryAddress(),
+                order.getStatus(),
+                order.getComments(),
+                order.getCreatedAt());
     }
 }
