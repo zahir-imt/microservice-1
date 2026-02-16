@@ -7,6 +7,7 @@ spring:
     password: ${DB_PASSWORD:postgres}
   jpa:
     open-in-view: false
+    show-sql: true
   rabbitmq:
     host: ${RABBITMQ_HOST:localhost}
     port: ${RABBITMQ_PORT:5672}
@@ -42,8 +43,8 @@ orders:
   delivered-orders-queue: delivered-orders
   cancelled-orders-queue: cancelled-orders
   error-orders-queue: error-orders
-  publish-order-events-job-cron: "*/20 * * * * *"
-  new-orders-job-cron: "*/20 * * * * *"
+  publish-order-events-job-cron: "*/60 * * * * *"
+  new-orders-job-cron: "*/60 * * * * *"
 
 ## Resilience4j Configuration
 resilience4j:

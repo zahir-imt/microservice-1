@@ -1,0 +1,2 @@
+To build only a specific module and its dependencies:
+    mvn clean install -pl application-module -am (The -pl flag specifies the project list, and -am stands for also make dependencies)

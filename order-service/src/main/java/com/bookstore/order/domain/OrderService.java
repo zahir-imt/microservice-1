@@ -35,6 +35,10 @@ public class OrderService {
         return new CreateOrderResponse(savedOrder.getOrderNumber());
     }
 
+    public List<OrderSummary> findOrders(String userName) {
+        return orderRepository.findByUserName(userName);
+    }
+
     public Optional<OrderDTO> findUserOrder(String userName, String orderNumber) {
         return orderRepository
                 .findByUserNameAndOrderNumber(userName, orderNumber)
