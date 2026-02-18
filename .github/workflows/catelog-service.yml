@@ -1,5 +1,5 @@
 name: Catalog Service
-run-name:  GitHub Actions for Catalog Service 🚀
+run-name: GitHub Actions for Catalog Service 🚀
 on:
   push:
     paths:
