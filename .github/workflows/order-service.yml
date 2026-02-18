@@ -1,5 +1,5 @@
 name: Order Service
-run-name: ${{ github.actor }} has triggered  GitHub Actions for Order Service 🚀
+run-name: GitHub Actions for Order Service 🚀
 on:
   push:
     paths:
