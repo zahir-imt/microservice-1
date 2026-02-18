@@ -1,7 +1,7 @@
 name: 'spring-boot-microservices-course'
 services:
   catalog-db:
-    image: postgres:18-alpine
+    image: postgres:latest
     container_name: catalog-db
     environment:
       - POSTGRES_USER=postgres
@@ -19,7 +19,7 @@ services:
         limits:
           memory: 500m
   orders-db:
-    image: postgres:18-alpine
+    image: postgres:latest
     container_name: orders-db
     environment:
       - POSTGRES_USER=postgres

@@ -5,6 +5,8 @@
 
     postgres=# bash
 
+    $ docker exec -it orders-db psql -U postgres -d postgres
+
 2. Access the Container's Shell (Bash/Sh)
     docker exec -it catalog-db bash
 
