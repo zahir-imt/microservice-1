@@ -8,7 +8,9 @@ spring:
   jpa:
     open-in-view: false
 
-
+######## Swagger Configuration  #########
+swagger:
+  api-gateway-url: http://localhost:8989/catalog
 server:
   port: 8081
   shutdown: graceful
